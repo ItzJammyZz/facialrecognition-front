@@ -1,0 +1,33 @@
+.Tilt {
+  /* background: linear-gradient(140deg, #dac659 35%, #dfee0c 75%); */
+  background-color: rgb(102, 29, 29);
+  background: radial-gradient(rgb(255, 61, 2) 15%, rgba(0,0,0,0) 16%), radial-gradient(rgb(182, 13, 7) 15%, rgba(0,0,0,0) 16%), rgb(243, 224, 147);
+  background-position: 0 0, 30px 30px;
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-size: 60px 60px;
+  cursor: -moz-grabbing;
+}
+
+.Tilt-inner {
+    position: relative;
+    top: 30px;
+    right: 3px;
+  /* padding: 5px;
+  padding-top: 30px; */
+  font-size: 60px;
+  z-index: 1;
+  color: rgba(73, 73, 230, 0.842);
+
+}
+
+.Logo__Name {
+    /* display: flex;
+    justify-content: center; */
+    font-size: 18px;
+    right: 3px;
+    position: relative;
+    bottom: -2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+}
