@@ -1,6 +1,5 @@
 {
   "name": "facialrecognitionbrain",
-  "homepage": "https://ItzJammyZz.github.io/facialrecognition-front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
