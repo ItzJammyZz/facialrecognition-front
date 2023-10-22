@@ -23,7 +23,7 @@ class Registration extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('https://arcane-chamber-79231.herokuapp.com/register', {
+    fetch('https://facialrecognitionapi.onrender.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

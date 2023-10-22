@@ -95,7 +95,7 @@ loadUser = (data) => {
     this.setState({imageUrl: this.state.input});
 
 
-    fetch('https://facialrecognitionfrontend.onrender.com/imageurl', {
+    fetch('https://facialrecognitionapi.onrender.com/imageurl', {
              method: 'post',
              headers: {'Content-Type': 'application/json'},
              body: JSON.stringify({
@@ -111,7 +111,7 @@ app.models.predict('face-detection', this.state.input)
          if (response) {
 
           //  fetch('https://arcane-chamber-79231.herokuapp.com/image', {
-            fetch('https://facialrecognitionfrontend.onrender.com/image', {
+            fetch('https://facialrecognitionapi.onrender.com/image', {
              method: 'put',
              headers: {'Content-Type': 'application/json'},
              body: JSON.stringify({
