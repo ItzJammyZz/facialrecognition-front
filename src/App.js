@@ -1,46 +1,51 @@
 import React, { Component } from 'react';
+import ParticlesBg from 'particles-bg'
 import Navigation from './components/Navigation/Navigation';
+import Clarifai from 'clarifai';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
-import './App.css';
 import Particles from 'react-particles-js';
 import Signin from './components/Signin/Signin'
 import Registration from './components/Registration/Registration';
+import './App.css';
 
-const particlesOptions = {
-  particles: {
-   number: {
-     value: 130,
-     density: {
-       enable: true,
-       value_area: 900
-     }
-   }
-  }
-}
+const app = new Clarifai.App({
+  apiKey: '887893022f414e7da0d611e0e0d5eaf4'
+ });
 
-const initalState = {
-  input: '',
-  imageUrl: '',
-  box: {},
-  route: 'signin',
-  isSignedIn: false,
-  user: {
-    id: '',
-    name: '',
-    email: '',
-    entries: 0,
-    joined: ''
-  }
-}
+// const particlesOptions = {
+//   particles: {
+//    number: {
+//      value: 130,
+//      density: {
+//        enable: true,
+//        value_area: 900
+//      }
+//    }
+//   }
+// }
+
 
 class App extends Component {
   constructor() {
     super();
-    this.state = initalState
+    this.state = {
+      input: '',
+      imageUrl: '',
+      box: {},
+      route: 'signin',
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+    }
 }
+  }
 
 loadUser = (data) => {
   this.setState({user: {
@@ -54,14 +59,14 @@ loadUser = (data) => {
 }
 
 
-/*
-componentDidMount() {
-  fetch('http://localhost:3000/')
-    .then(response => response.json())
-    .then(console.log)
-}
-This won't be needed anymore but it's used to test backend to frontedn
-*/
+
+// componentDidMount() {
+//   fetch('http://localhost:3000/')
+//     .then(response => response.json())
+//     .then(console.log)
+// }
+// This won't be needed anymore but it's used to test backend to frontedn
+
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box
@@ -88,17 +93,25 @@ This won't be needed anymore but it's used to test backend to frontedn
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    fetch('https://arcane-chamber-79231.herokuapp.com/imageurl', {
+
+
+    fetch('https://facialrecognitionfrontend.onrender.com/imageurl', {
              method: 'post',
              headers: {'Content-Type': 'application/json'},
              body: JSON.stringify({
                input: this.state.input
              })
            })
+
+
+
+app.models.predict('face-detection', this.state.input)
            .then(response => response.json())
        .then(response => {
          if (response) {
-           fetch('https://arcane-chamber-79231.herokuapp.com/image', {
+
+          //  fetch('https://arcane-chamber-79231.herokuapp.com/image', {
+            fetch('https://facialrecognitionfrontend.onrender.com/image', {
              method: 'put',
              headers: {'Content-Type': 'application/json'},
              body: JSON.stringify({
@@ -120,7 +133,7 @@ This won't be needed anymore but it's used to test backend to frontedn
 
 onRouteChange = (route) => {
   if (route === 'signout') {
-    this.setState(initalState)
+    this.setState({isSignedIn: false})
   } else if (route === 'home') {
     this.setState({isSignedIn: true})
   }
@@ -132,9 +145,7 @@ render() {
   const { isSignedIn, imageUrl, route, box } = this.state;
   return (
     <div className="App">
-       <Particles className='particles'
-        params={particlesOptions}
-      />
+       <ParticlesBg  type="fountain" bg={true} />
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
       { route === 'home'
         ? <div>

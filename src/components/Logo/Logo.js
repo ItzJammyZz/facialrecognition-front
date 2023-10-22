@@ -1,7 +1,8 @@
 import React from "react";
 import "./Logo.css";
 import Tilt from "react-tilt";
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+
+// import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 function Logo() {
   return (
@@ -22,5 +23,3 @@ function Logo() {
 }
 
 export default Logo;
-
-{/* <a href="https://github.com/ItzJammyZz">Jammy</a> */}
