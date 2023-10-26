@@ -6,7 +6,6 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
-import Particles from 'react-particles-js';
 import Signin from './components/Signin/Signin'
 import Registration from './components/Registration/Registration';
 import './App.css';
@@ -14,18 +13,6 @@ import './App.css';
 const app = new Clarifai.App({
   apiKey: '887893022f414e7da0d611e0e0d5eaf4'
  });
-
-// const particlesOptions = {
-//   particles: {
-//    number: {
-//      value: 130,
-//      density: {
-//        enable: true,
-//        value_area: 900
-//      }
-//    }
-//   }
-// }
 
 
 class App extends Component {
@@ -145,7 +132,7 @@ render() {
   const { isSignedIn, imageUrl, route, box } = this.state;
   return (
     <div className="App">
-       <ParticlesBg  type="fountain" bg={true} />
+       {/* <ParticlesBg  type="fountain" bg={true} /> */}
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
       { route === 'home'
         ? <div>
