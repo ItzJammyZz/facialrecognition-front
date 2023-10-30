@@ -1,5 +1,6 @@
 import React from 'react'
 import './Registration.css'
+import axios from 'axios';
 
 class Registration extends React.Component {
   constructor(props) {
@@ -25,27 +26,43 @@ class Registration extends React.Component {
 
   onSubmitSignIn = () =>
   {
-    try {
-    fetch('https://facialrecognitionapi.onrender.com/register', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        name: this.state.name
-      })
-    })
-    .then(response => {
-      console.log('I am trying to fetch', response);
-      return response.json()})
-    .then(user => {
-      if(user.id) {
-        this.props.loadUser(user);
-        this.props.onRouteChange('home');
-      }
-    })
-  }
-  catch(err) { console.log('Uh oh, we catch an error here!', err); }
+    axios.post('https://facialrecognitionapi.onrender.com/register', {
+  email: 'jammy@hello.com', // Replace with actual user input
+  password: 'yossword', // Replace with actual user input
+  name: 'Jamster', // Replace with actual user input
+})
+.then(response => {
+  // Handle the response here, e.g., update the UI or navigate to a new page
+  console.log(response);
+})
+.catch(error => {
+  // Handle errors, e.g., display an error message to the user
+  console.error(error);
+});
+
+
+
+  //   try {
+  //   fetch('https://facialrecognitionapi.onrender.com/register', {
+  //     method: 'post',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify({
+  //       email: this.state.email,
+  //       password: this.state.password,
+  //       name: this.state.name
+  //     })
+  //   })
+  //   .then(response => {
+  //     console.log('I am trying to fetch', response);
+  //     return response.json()})
+  //   .then(user => {
+  //     if(user.id) {
+  //       this.props.loadUser(user);
+  //       this.props.onRouteChange('home');
+  //     }
+  //   })
+  // }
+  // catch(err) { console.log('Uh oh, we catch an error here!', err); }
   }
 
 
