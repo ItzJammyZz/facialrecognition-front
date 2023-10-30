@@ -10,9 +10,9 @@ import Signin from './components/Signin/Signin'
 import Registration from './components/Registration/Registration';
 import './App.css';
 
-const app = new Clarifai.App({
-  apiKey: '887893022f414e7da0d611e0e0d5eaf4'
- });
+// const app = new Clarifai.App({
+//   apiKey: '887893022f414e7da0d611e0e0d5eaf4'
+//  });
 
 
 class App extends Component {
@@ -80,13 +80,12 @@ loadUser = (data) => {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-
-
     fetch('https://facialrecognitionapi.onrender.com/imageurl', {
              method: 'post',
              headers: {'Content-Type': 'application/json'},
              body: JSON.stringify({
                input: this.state.input
+              //  id: this.state.input
              })
            })
 

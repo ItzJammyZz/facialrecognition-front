@@ -36,7 +36,7 @@ class Registration extends React.Component {
       })
     })
     .then(response => {
-      console.log(response);
+      console.log('I am trying to fetch', response);
       return response.json()})
     .then(user => {
       if(user.id) {
@@ -45,7 +45,7 @@ class Registration extends React.Component {
       }
     })
   }
-  catch(err) { console.log(err); }
+  catch(err) { console.log('Uh oh, we catch an error here!', err); }
   }
 
 
