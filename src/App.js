@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ParticlesBg from 'particles-bg'
+// import ParticlesBg from 'particles-bg'
 import Navigation from './components/Navigation/Navigation';
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
@@ -47,11 +47,11 @@ loadUser = (data) => {
 
 
 
-// componentDidMount() {
-//   fetch('http://localhost:3000/')
-//     .then(response => response.json())
-//     .then(console.log)
-// }
+componentDidMount() {
+  fetch('https://facialrecognitionapi.onrender.com/')
+    .then(response => response.json())
+    .then(console.log('Component DID mount'))
+}
 // This won't be needed anymore but it's used to test backend to frontedn
 
 
@@ -91,7 +91,7 @@ loadUser = (data) => {
 
 
 
-app.models.predict('face-detection', this.state.input)
+    App.models.predict('face-detection', this.state.input)
            .then(response => response.json())
        .then(response => {
          if (response) {
