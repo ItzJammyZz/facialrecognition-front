@@ -22,7 +22,10 @@ class Registration extends React.Component {
     this.setState({password: event.target.value})
   }
 
-  onSubmitSignIn = () => {
+
+  onSubmitSignIn = () =>
+  {
+    try {
     fetch('https://facialrecognitionapi.onrender.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -32,15 +35,40 @@ class Registration extends React.Component {
         name: this.state.name
       })
     })
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response.json()})
     .then(user => {
-      console.log(user)
       if(user.id) {
-        this.props.loadUser(user)
+        this.props.loadUser(user);
         this.props.onRouteChange('home');
       }
-    }) .catch((error) => console.log(error))
+    })
   }
+  catch(err) { console.log(err); }
+  }
+
+
+  // onSubmitSignIn = () => {
+  //   fetch('https://facialrecognitionapi.onrender.com/register', {
+  //     method: 'post',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify({
+  //       email: this.state.email,
+  //       password: this.state.password,
+  //       name: this.state.name
+  //     })
+  //   })
+  //   .then(response => response.json())
+  //   .then(user => {
+  //     console.log(user)
+  //     if(user.id) {
+  //       this.props.loadUser(user)
+  //       this.props.onRouteChange('home');
+  //     }
+  //   }) 
+  //   .catch((error) => console.log(error))
+  // }
   
   render() {
     return (
